@@ -23,8 +23,18 @@ class MLHelper:
         Click <a href='./startMLLearning'>Start Learning</a><br />
         """
         return strResult
-    def startMLLearning(self) -> bool:
+    def startMLLearning(self) -> str:
+        #Machine Learning
         from sklearn.tree import DecisionTreeClassifier
         clf=DecisionTreeClassifier()
         clf.fit(self.X_train,self.Y_train)
-        return True
+
+        #Predict
+        Y_pred=clf.predict(self.X_test)
+        from sklearn.metrics import accuracy_score
+        ascore=accuracy_score(
+            y_true=self.Y_train,
+            y_pred=Y_pred)
+        result="Machine Learning accuracy is: {0}".format(ascore)
+        
+        return result
